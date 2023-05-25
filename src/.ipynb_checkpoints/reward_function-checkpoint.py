@@ -178,11 +178,13 @@ def reward_function(params):
     reward_total -= reward_total * (1.0 - speed_ratio) * TOTAL_PENALTY_ON_BAD_SPEED
     reward_total *= wheels_off_track_penalty
 
-    print("rewards:" + (20 * "{:.4f}," + "{:.4f}").format(reward_total,
-        wheels_off_track_penalty, reward_on_track, reward_exp_speed, reward_dir_steering, reward_prog_step,
-        dislocation, track_direction_1, track_direction_2, track_direction_3, direction_diff_ratio,
-        waypoints[wp_indices[0]][0], waypoints[wp_indices[0]][1], prev_point[0], prev_point[1],
-        next_point_1[0], next_point_1[1], next_point_2[0], next_point_2[1], next_point_3[0], next_point_3[1]))
+    # print("rewards:" + (20 * "{:.4f}," + "{:.4f}").format(reward_total,
+    #     wheels_off_track_penalty, reward_on_track, reward_exp_speed, reward_dir_steering, reward_prog_step,
+    #     dislocation, track_direction_1, track_direction_2, track_direction_3, direction_diff_ratio,
+    #     waypoints[wp_indices[0]][0], waypoints[wp_indices[0]][1], prev_point[0], prev_point[1],
+    #     next_point_1[0], next_point_1[1], next_point_2[0], next_point_2[1], next_point_3[0], next_point_3[1]))
+    
+    print(params)
 
     previous_steps_reward = ema(previous_steps_reward, reward_total, 3)
     return float(0.0000001 + previous_steps_reward)
